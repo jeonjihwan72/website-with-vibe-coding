@@ -832,3 +832,10 @@ WebConfig.java
 schema.sql
 의 users 테이블 password 컬럼 길이가 암호화된 해시값(약 60자 이상)을 충분히 담을 수 있는지 확인한다. (이미 VARCHAR(200)인 경우 유지)
 ```
+
+---
+
+### New Keywords
+
+- 아카이빙 (Archiving): 파일들을 압축하는 것을 의미한다.
+    - ex. `.zip`, `.jar` 등
