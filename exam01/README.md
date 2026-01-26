@@ -55,7 +55,7 @@
 이를 바탕으로 프로젝트 명세서를 작성해줘.
 
 - 프로젝트 설정
-    - JDK: JDK 25 이상
+    - JDK: JDK 21 이상
     - Language: Java
     - Spring Boot: 4.0.1 이상
     - Build Tool: Gradle 9.3.0 이상, Groovy DSL 사용
