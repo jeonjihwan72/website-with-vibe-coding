@@ -839,6 +839,9 @@ schema.sql
 
 - 아카이빙 (Archiving): 파일들을 압축하는 것을 의미한다.
     - ex. `.zip`, `.jar` 등
-
 - Configuration: 프로젝트 초기 설정 파일
     - ex. `.yaml` 등
+- gradle wrapper: gradle을 실행할 때 환경의 구애받지 않도록 하는 방법
+    - how to use: `gradle wrapper`
+    - `graldew: Mac/Linux에서 실행할 때 사용하는 파일
+    - `graldew.bat`: Windows에서 실행할 때 사용
