@@ -839,3 +839,6 @@ schema.sql
 
 - 아카이빙 (Archiving): 파일들을 압축하는 것을 의미한다.
     - ex. `.zip`, `.jar` 등
+
+- Configuration: 프로젝트 초기 설정 파일
+    - ex. `.yaml` 등
