@@ -43,9 +43,9 @@
 
 ## 5. 현재 구현 상태 (Current Implementation)
 - **Web View**:
-    - `/` (Home): `index.html` (Thymeleaf) 렌더링
+    - `/` (Home): `home.html` (`HomeController.java`에서 처리)
 - **REST API**:
-    - `GET /api/hello`: "Hello, Vibe!" 문자열 반환
+    - `GET /api/hello`: "Hello, Vibe!" 문자열 반환 (`VibeApp.java`에서 @ResponseBody 사용)
 - **빌드 검증**:
     - `gradlew.bat build` 명령어를 통해 빌드 성공 확인 (2026-01-27)
 

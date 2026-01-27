@@ -14,11 +14,6 @@ public class VibeApp {
         SpringApplication.run(VibeApp.class, args);
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
-
     @GetMapping("/api/hello")
     @ResponseBody
     public String hello() {
