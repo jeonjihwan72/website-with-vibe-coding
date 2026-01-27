@@ -5,7 +5,7 @@
 ## 1. 프로젝트 개요
 - **프로젝트명**: vibeapp
 - **설명**: 최소 기능 스프링부트 애플리케이션을 생성하는 프로젝트입니다.
-- **주요 목적**: Spring Boot 4.0.1 및 Java 21 기반의 표준화된 스타터 환경 구축.
+- **주요 목적**: Spring Boot 4.0.1 및 Java 25 기반의 표준화된 스타터 환경 구축.
 
 ## 2. 프로젝트 메타데이터 (Metadata)
 | 항목 | 값 |
@@ -18,7 +18,7 @@
 
 ## 3. 기술 스택 (Technical Stack)
 - **Language**: Java
-- **JDK Version**: JDK 25 이상
+- **JDK Version**: JDK 25 이상 (Toolchain 설정 완료)
 - **Framework**: Spring Boot 4.0.1+
 - **Build Tool**: Gradle 9.3.0+
 - **Configuration Format**: YAML (`application.yml`)
@@ -27,6 +27,7 @@
 ### Gradle 설정
 - **DSL**: Groovy DSL (`build.gradle`)
 - **버전**: Gradle 9.3.0 이상
+- **Wrapper**: `gradlew` 설정 완료 (윈도우/맥/리눅스 호환)
 
 ### 주요 플러그인
 - `org.springframework.boot` (Spring Boot 기반 설정)
@@ -34,11 +35,19 @@
 - `java` (Java 프로젝트 지원)
 
 ### 종속성 (Dependencies)
-- **최소 기능 프로젝트**로서 추가적인 외부 라이브러리는 포함하지 않음.
+- `spring-boot-starter-web`: REST API 구현을 위한 웹 스타터
+- `spring-boot-starter-test`: 테스트 환경 구축
+- `junit-platform-launcher`: JUnit 5 테스트 실행 지원
 
-## 5. 설정 정보 (Configuration)
+## 5. 현재 구현 상태 (Current Implementation)
+- **REST API**:
+    - `GET /api/hello`: "Hello, Vibe!" 문자열 반환
+- **빌드 검증**:
+    - `gradlew.bat build` 명령어를 통해 빌드 성공 확인 (2026-01-27)
+
+## 6. 설정 정보 (Configuration)
 - **설정 파일**: `src/main/resources/application.yml`
 - **형식**: YAML
 
 ---
-*마지막 업데이트: 2026-01-26*
+*마지막 업데이트: 2026-01-27*
