@@ -36,22 +36,29 @@
 - `java` (Java 프로젝트 지원)
 
 ### 종속성 (Dependencies)
-- `spring-boot-starter-web`: REST API 구현을 위한 웹 스타터
+- `spring-boot-starter-web`: REST API 및 웹 개발을 위한 핵심 스타터
 - `spring-boot-starter-thymeleaf`: HTML 뷰 렌더링을 위한 템플릿 엔진
 - `spring-boot-starter-test`: 테스트 환경 구축
 - `junit-platform-launcher`: JUnit 5 테스트 실행 지원
 
 ## 5. 현재 구현 상태 (Current Implementation)
+### 주요 컨트롤러 (Key Controllers)
+- **`HomeController`**: 애플리케이션의 메인 홈 페이지 요청 처리
+- **`VibeApp`**: 메인 애플리케이션 실행 및 기본 REST API 제공
+
+### 엔드포인트 및 기능
 - **Web View**:
-    - `/` (Home): `home.html` (`HomeController.java`에서 처리)
+    - `/` (Home): `home.html` (Thymeleaf 기반, "Hello, Vibe!" 메시지 출력)
 - **REST API**:
-    - `GET /api/hello`: "Hello, Vibe!" 문자열 반환 (`VibeApp.java`에서 @ResponseBody 사용)
-- **빌드 검증**:
-    - `gradlew.bat build` 명령어를 통해 빌드 성공 확인 (2026-01-27)
+    - `GET /api/hello`: "Hello, Vibe!" 문자열 반환 (텍스트 기반 데이터 교환 인터페이스)
+
+### 빌드 및 검증 상태
+- **빌드 도구**: Gradle Wrapper (`.\gradlew.bat`)
+- **검증 완료**: `gradlew build` 성공 (2026-01-27)
 
 ## 6. 설정 정보 (Configuration)
 - **설정 파일**: `src/main/resources/application.yml`
 - **형식**: YAML
 
 ---
-*마지막 업데이트: 2026-01-27*
+*마지막 업데이트: 2026-01-27 (Thymeleaf 및 HomeController 기능 통합 완료)*
