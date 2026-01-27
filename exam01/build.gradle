@@ -18,8 +18,8 @@ repositories {
 }
 
 dependencies {
-    // 최소 기능 프로젝트: 추가 종속성 없음
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }

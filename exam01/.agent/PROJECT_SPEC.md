@@ -19,7 +19,8 @@
 ## 3. 기술 스택 (Technical Stack)
 - **Language**: Java
 - **JDK Version**: JDK 25 이상 (Toolchain 설정 완료)
-- **Framework**: Spring Boot 4.0.1+
+- **Framework**: Spring Boot 4.0.1+ (Web, Thymeleaf)
+- **View Engine**: Thymeleaf
 - **Build Tool**: Gradle 9.3.0+
 - **Configuration Format**: YAML (`application.yml`)
 
@@ -36,10 +37,13 @@
 
 ### 종속성 (Dependencies)
 - `spring-boot-starter-web`: REST API 구현을 위한 웹 스타터
+- `spring-boot-starter-thymeleaf`: HTML 뷰 렌더링을 위한 템플릿 엔진
 - `spring-boot-starter-test`: 테스트 환경 구축
 - `junit-platform-launcher`: JUnit 5 테스트 실행 지원
 
 ## 5. 현재 구현 상태 (Current Implementation)
+- **Web View**:
+    - `/` (Home): `index.html` (Thymeleaf) 렌더링
 - **REST API**:
     - `GET /api/hello`: "Hello, Vibe!" 문자열 반환
 - **빌드 검증**:
