@@ -845,3 +845,7 @@ schema.sql
     - how to use: `gradle wrapper`
     - `graldew: Mac/Linux에서 실행할 때 사용하는 파일
     - `graldew.bat`: Windows에서 실행할 때 사용
+- `echo %JAVA_HOME%`: 현재 JAVA_HOME 환경 변수의 값을 출력한다
+    - `echo`: 뒤에 오는 텍스트나 변수 내용을 터미널에 그대로 출력하는 명령어
+    - `%변수명%`: Windows에서 환경 변수를 호출할 때 사용하는 기호
+    - `JAVA_HOME`: 자바 개발 도구(JDK)가 설치된 최상위 경로를 가리키는 관습적 변수명
