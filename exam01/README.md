@@ -843,6 +843,7 @@ schema.sql
     - ex. `.yaml` 등
 - gradle wrapper: gradle을 실행할 때 환경의 구애받지 않도록 하는 방법
     - how to use: `gradle wrapper`
+    - 프로젝트 자체에 gradle을 설치하는 개념
     - `graldew: Mac/Linux에서 실행할 때 사용하는 파일
     - `graldew.bat`: Windows에서 실행할 때 사용
 - `echo %JAVA_HOME%`: 현재 JAVA_HOME 환경 변수의 값을 출력한다
