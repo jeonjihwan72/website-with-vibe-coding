@@ -18,7 +18,7 @@
 
 ## 3. 기술 스택 (Technical Stack)
 - **Language**: Java
-- **JDK Version**: JDK 21 이상
+- **JDK Version**: JDK 25 이상
 - **Framework**: Spring Boot 4.0.1+
 - **Build Tool**: Gradle 9.3.0+
 - **Configuration Format**: YAML (`application.yml`)
