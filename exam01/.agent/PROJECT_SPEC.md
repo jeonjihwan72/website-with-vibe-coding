@@ -21,6 +21,7 @@
 - **JDK Version**: JDK 25 이상 (Toolchain 설정 완료)
 - **Framework**: Spring Boot 4.0.1+ (Web, Thymeleaf)
 - **View Engine**: Thymeleaf
+- **UI Framework**: Bootstrap 5 (via CDN)
 - **Build Tool**: Gradle 9.3.0+
 - **Configuration Format**: YAML (`application.yml`)
 
@@ -48,17 +49,19 @@
 
 ### 엔드포인트 및 기능
 - **Web View**:
-    - `/` (Home): `home.html` (Thymeleaf 기반, "Hello, Vibe!" 메시지 출력)
+    - `/` (Home): `home.html` (Thymeleaf 및 **Bootstrap 5** 기반, "Hello, Vibe!" 메시지 및 반응형 레이아웃 적용)
+    - `/index.html`: (Thymeleaf 및 **Bootstrap 5** 기반, 서버 시간 출력 및 가이드 페이지)
 - **REST API**:
     - `GET /api/hello`: "Hello, Vibe!" 문자열 반환 (텍스트 기반 데이터 교환 인터페이스)
 
 ### 빌드 및 검증 상태
 - **빌드 도구**: Gradle Wrapper (`.\gradlew.bat`)
 - **검증 완료**: `gradlew build` 성공 (2026-01-27)
+- **UI/UX**: Bootstrap 5 CDN을 통한 현대적인 Glassmorphism 디자인 적용 완료
 
 ## 6. 설정 정보 (Configuration)
 - **설정 파일**: `src/main/resources/application.yml`
 - **형식**: YAML
 
 ---
-*마지막 업데이트: 2026-01-27 (Thymeleaf 및 HomeController 기능 통합 완료)*
+*마지막 업데이트: 2026-01-27 (Thymeleaf, Bootstrap 5 및 HomeController 통합 완료)*
