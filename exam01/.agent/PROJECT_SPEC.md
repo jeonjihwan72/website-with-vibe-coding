@@ -45,11 +45,17 @@
 ## 5. 현재 구현 상태 (Current Implementation)
 ### 주요 컨트롤러 (Key Controllers)
 - **`HomeController`**: 애플리케이션의 메인 홈 페이지 요청 처리
+- **`PostController`**: 게시글 관련 요청 처리 (목록 조회 등)
 - **`VibeApp`**: 메인 애플리케이션 실행 및 기본 REST API 제공
+
+### 서비스 및 데이터 (Services & Data)
+- **`PostService`**: 게시글 비즈니스 로직 처리
+- **`PostRepository`**: 메모리 기반(ArrayList) 데이터 저장소
 
 ### 엔드포인트 및 기능
 - **Web View**:
     - `/` (Home): `home.html` (Thymeleaf 및 **Bootstrap 5** 기반, "Hello, Vibe!" 메시지 및 반응형 레이아웃 적용)
+    - `/posts`: `post/posts.html` (게시글 목록 조회 화면, Tailwind CSS 및 Glassmorphism 적용)
     - `/index.html`: (Thymeleaf 및 **Bootstrap 5** 기반, 서버 시간 출력 및 가이드 페이지)
 - **REST API**:
     - `GET /api/hello`: "Hello, Vibe!" 문자열 반환 (텍스트 기반 데이터 교환 인터페이스)
@@ -85,4 +91,4 @@
 - **형식**: YAML
 
 ---
-*마지막 업데이트: 2026-01-28 (프로젝트 디렉터리 구조 항목 추가)*
+*마지막 업데이트: 2026-01-28 (게시글 목록 조회 기능 추가)*
