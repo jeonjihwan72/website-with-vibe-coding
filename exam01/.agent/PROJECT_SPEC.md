@@ -59,9 +59,30 @@
 - **검증 완료**: `gradlew build` 성공 (2026-01-27)
 - **UI/UX**: Bootstrap 5 CDN을 통한 현대적인 Glassmorphism 디자인 적용 완료
 
-## 6. 설정 정보 (Configuration)
+## 6. 프로젝트 디렉터리 구조 (Project Directory Structure)
+```text
+.
+├── .agent/
+│   └── PROJECT_SPEC.md        # 프로젝트 명세서
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com/example/vibeapp/
+│       │       ├── HomeController.java  # 홈 페이지 컨트롤러
+│       │       └── VibeApp.java         # 메인 애플리케이션 및 API 컨트롤러
+│       └── resources/
+│           ├── templates/
+│           │   ├── home.html           # 홈 페이지 템플릿
+│           │   └── index.html          # 가이드 페이지 템플릿
+│           └── application.yml         # 애플리케이션 설정 파일
+├── build.gradle                # Gradle 빌드 스크립트
+├── gradlew/gradlew.bat         # Gradle Wrapper
+└── README.md                   # 프로젝트 리드미
+```
+
+## 7. 설정 정보 (Configuration)
 - **설정 파일**: `src/main/resources/application.yml`
 - **형식**: YAML
 
 ---
-*마지막 업데이트: 2026-01-27 (Thymeleaf, Bootstrap 5 및 HomeController 통합 완료)*
+*마지막 업데이트: 2026-01-28 (프로젝트 디렉터리 구조 항목 추가)*
