@@ -1,7 +1,5 @@
-package com.example.vibeapp.controller;
+package com.example.vibeapp.post;
 
-import com.example.vibeapp.entity.Post;
-import com.example.vibeapp.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +16,7 @@ public class PostController {
     }
 
     @GetMapping("/posts")
-    public String listPosts(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+    public String list(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
         int pageSize = 5;
         model.addAttribute("posts", postService.getPostsByPage(page, pageSize));
         model.addAttribute("currentPage", page);
@@ -27,40 +25,40 @@ public class PostController {
     }
 
     @GetMapping("/posts/{no}")
-    public String viewPost(@PathVariable("no") Long no, Model model) {
-        Post post = postService.getPost(no);
+    public String detail(@PathVariable("no") Long no, Model model) {
+        Post post = postService.findById(no);
         model.addAttribute("post", post);
         return "post/post_detail";
     }
 
     @GetMapping("/posts/new")
-    public String newPostForm() {
+    public String createForm() {
         return "post/post_new_form";
     }
 
     @PostMapping("/posts/add")
-    public String registerPost(@RequestParam("title") String title, @RequestParam("content") String content) {
-        postService.registerPost(title, content);
+    public String create(@RequestParam("title") String title, @RequestParam("content") String content) {
+        postService.create(title, content);
         return "redirect:/posts";
     }
 
     @GetMapping("/posts/{no}/edit")
-    public String editPostForm(@PathVariable("no") Long no, Model model) {
-        Post post = postService.getPost(no);
+    public String editForm(@PathVariable("no") Long no, Model model) {
+        Post post = postService.findById(no);
         model.addAttribute("post", post);
         return "post/post_edit_form";
     }
 
     @PostMapping("/posts/{no}/save")
-    public String updatePost(@PathVariable("no") Long no, @RequestParam("title") String title,
+    public String update(@PathVariable("no") Long no, @RequestParam("title") String title,
             @RequestParam("content") String content) {
-        postService.updatePost(no, title, content);
+        postService.update(no, title, content);
         return "redirect:/posts/" + no;
     }
 
     @GetMapping("/posts/{no}/delete")
-    public String deletePost(@PathVariable("no") Long no) {
-        postService.deletePost(no);
+    public String delete(@PathVariable("no") Long no) {
+        postService.delete(no);
         return "redirect:/posts";
     }
 }

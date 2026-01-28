@@ -1,6 +1,5 @@
-package com.example.vibeapp.repository;
+package com.example.vibeapp.post;
 
-import com.example.vibeapp.entity.Post;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -23,10 +22,6 @@ public class PostRepository {
                     LocalDateTime.now().minusDays(10 - i),
                     (int) (Math.random() * 100)));
         }
-    }
-
-    public List<Post> findAll() {
-        return new ArrayList<>(posts);
     }
 
     public Optional<Post> findById(Long no) {

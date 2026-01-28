@@ -44,32 +44,29 @@
 
 ## 5. 현재 구현 상태 (Current Implementation)
 ### 주요 컨트롤러 (Key Controllers)
-- **`HomeController`**: 애플리케이션의 메인 홈 페이지 요청 처리
-- **`PostController`**: 게시글 관련 요청 처리 (목록 조회 등)
-- **`VibeApp`**: 메인 애플리케이션 실행 및 기본 REST API 제공
+- **`HomeController`**: 애플리케이션의 메인 홈 페이지 요청 처리 (`home/home.html`)
+- **`PostController`**: 게시판 기능(목록, 상세, 등록, 수정, 삭제) 관련 웹 요청 처리
+- **`VibeApp`**: 애플리케이션의 진입점(Entry Point) 클래스
 
 ### 서비스 및 데이터 (Services & Data)
-- **`PostService`**: 게시글 비즈니스 로직 처리
-- **`PostRepository`**: 메모리 기반(ArrayList) 데이터 저장소
+- **`PostService`**: 게시판 비즈니스 로직(조회수 증가, 페이징 계산 등) 처리
+- **`PostRepository`**: 인메모리(`ArrayList`) 기반의 게시글 데이터 저장소
 
-### 엔드포인트 및 기능
-- **Web View**:
-    - `/` (Home): `home.html` (Thymeleaf 및 **Bootstrap 5** 기반, "Hello, Vibe!" 메시지 및 반응형 레이아웃 적용)
-    - `/posts`: `post/posts.html` (게시글 목록 조회 화면, 페이징 지원 - 페이지당 5개)
-    - `/posts/{no}`: `post/post_detail.html` (게시글 상세 조회 화면, Tailwind CSS 적용)
-    - `/posts/new`: `post/post_new_form.html` (게시글 작성 화면, Tailwind CSS 기반 작성폼 UI)
-    - `POST /posts/add`: 게시글 실제 등록 처리 (등록 후 `/posts`로 리다이렉트)
-    - `/posts/{no}/edit`: `post/post_edit_form.html` (게시글 수정 화면 UI)
-    - `POST /posts/{no}/save`: 게시글 실제 수정 처리 (수정 후 `/posts/{no}`로 리다이렉트)
-    - `/posts/{no}/delete`: 게시글 삭제 처리 (삭제 후 `/posts`로 리다이렉트)
-    - `/index.html`: (Thymeleaf 및 **Bootstrap 5** 기반, 서버 시간 출력 및 가이드 페이지)
-- **REST API**:
-    - `GET /api/hello`: "Hello, Vibe!" 문자열 반환 (텍스트 기반 데이터 교환 인터페이스)
+### 엔드포인트 및 기능 (Web View)
+- `/` (Home): 홈 페이지 (서버 시간 출력 및 대시보드 형태)
+- `/posts`: 게시글 목록 (페이지당 5개 페이징 지원)
+- `/posts/{no}`: 게시글 상세 내용 및 조회수 표시
+- `/posts/new`: 게시글 작성 폼
+- `POST /posts/add`: 게시글 등록 처리 프로세스
+- `/posts/{no}/edit`: 게시글 수정 폼
+- `POST /posts/{no}/save`: 게시글 수정 처리 프로세스
+- `/posts/{no}/delete`: 게시글 삭제 처리 프로세스
+- `/index.html`: 가이드 및 서버 정보 확인 페이지
 
 ### 빌드 및 검증 상태
 - **빌드 도구**: Gradle Wrapper (`.\gradlew.bat`)
-- **검증 완료**: `gradlew build` 성공 (2026-01-27)
-- **UI/UX**: Bootstrap 5 CDN을 통한 현대적인 Glassmorphism 디자인 적용 완료
+- **검증 완료**: `gradlew build` 성공 (최종 확인: 2026-01-28)
+- **디자인**: Tailwind CSS 및 Bootstrap 5를 활용한 현대적인 UI/UX 적용
 
 ## 6. 프로젝트 디렉터리 구조 (Project Directory Structure)
 ```text
@@ -80,15 +77,22 @@
 │   └── main/
 │       ├── java/
 │       │   └── com/example/vibeapp/
-│       │       ├── HomeController.java  # 홈 페이지 컨트롤러
-│       │       └── VibeApp.java         # 메인 애플리케이션 및 API 컨트롤러
+│       │       ├── VibeApp.java         # 메인 애플리케이션 클래스
+│       │       ├── home/
+│       │       │   └── HomeController.java # 홈 페이지 컨트롤러
+│       │       └── post/
+│       │           ├── Post.java         # 게시글 엔티티
+│       │           ├── PostController.java # 게시글 컨트롤러
+│       │           ├── PostRepository.java # 게시글 저장소
+│       │           └── PostService.java    # 게시글 서비스
 │       └── resources/
 │           ├── templates/
-│           │   ├── home.html           # 홈 페이지 템플릿
+│           │   ├── home/
+│           │   │   └── home.html       # 홈 페이지 템플릿
+│           │   ├── post/               # 게시글 관련 템플릿들
 │           │   └── index.html          # 가이드 페이지 템플릿
 │           └── application.yml         # 애플리케이션 설정 파일
 ├── build.gradle                # Gradle 빌드 스크립트
-├── gradlew/gradlew.bat         # Gradle Wrapper
 └── README.md                   # 프로젝트 리드미
 ```
 
@@ -97,4 +101,4 @@
 - **형식**: YAML
 
 ---
-*마지막 업데이트: 2026-01-28 (게시글 목록 페이징 기능 추가)*
+*마지막 업데이트: 2026-01-28 (코드 리팩토링 및 네이밍 정제 반영)*

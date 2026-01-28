@@ -1,7 +1,5 @@
-package com.example.vibeapp.service;
+package com.example.vibeapp.post;
 
-import com.example.vibeapp.entity.Post;
-import com.example.vibeapp.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,10 +13,6 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public List<Post> getAllPosts() {
-        return postRepository.findAll();
-    }
-
     public List<Post> getPostsByPage(int page, int size) {
         int offset = (page - 1) * size;
         return postRepository.findPage(offset, size);
@@ -29,13 +23,13 @@ public class PostService {
         return (int) Math.ceil((double) totalCount / size);
     }
 
-    public Post getPost(Long no) {
+    public Post findById(Long no) {
         postRepository.incrementViews(no);
         return postRepository.findById(no)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid post number: " + no));
     }
 
-    public void registerPost(String title, String content) {
+    public void create(String title, String content) {
         Post post = new Post();
         post.setTitle(title);
         post.setContent(content);
@@ -45,14 +39,14 @@ public class PostService {
         postRepository.save(post);
     }
 
-    public void updatePost(Long no, String title, String content) {
-        Post post = getPost(no);
+    public void update(Long no, String title, String content) {
+        Post post = findById(no);
         post.setTitle(title);
         post.setContent(content);
         post.setUpdatedAt(LocalDateTime.now());
     }
 
-    public void deletePost(Long no) {
+    public void delete(Long no) {
         postRepository.deleteById(no);
     }
 }
