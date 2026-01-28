@@ -125,7 +125,7 @@
                             <td class="px-6 py-5">
                                 <div class="flex flex-col gap-1">
                                     <a class="text-base font-semibold text-[#0d141b] dark:text-slate-100 group-hover:text-primary transition-colors"
-                                        href="#" th:text="${post.title}">
+                                        href="#" th:href="@{/posts/{no}(no=${post.no})}" th:text="${post.title}">
                                         Tailwind CSS의 성능 최적화 기법 Top 10
                                     </a>
                                     <div class="flex items-center gap-3">

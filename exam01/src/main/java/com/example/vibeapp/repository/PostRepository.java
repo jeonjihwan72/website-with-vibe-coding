@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class PostRepository {
@@ -26,5 +27,15 @@ public class PostRepository {
 
     public List<Post> findAll() {
         return new ArrayList<>(posts);
+    }
+
+    public Optional<Post> findById(Long no) {
+        return posts.stream()
+                .filter(post -> post.getNo().equals(no))
+                .findFirst();
+    }
+
+    public void incrementViews(Long no) {
+        findById(no).ifPresent(post -> post.setViews(post.getViews() + 1));
     }
 }
