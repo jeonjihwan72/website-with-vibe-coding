@@ -51,4 +51,16 @@ public class PostRepository {
     public void deleteById(Long no) {
         posts.removeIf(post -> post.getNo().equals(no));
     }
+
+    public int count() {
+        return posts.size();
+    }
+
+    public List<Post> findPage(int offset, int limit) {
+        return posts.stream()
+                .sorted((p1, p2) -> p2.getNo().compareTo(p1.getNo())) // Descending order by 'no'
+                .skip(offset)
+                .limit(limit)
+                .toList();
+    }
 }

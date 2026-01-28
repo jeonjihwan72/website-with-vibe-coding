@@ -155,25 +155,26 @@
             </div>
             <div
                 class="flex items-center justify-between px-6 py-4 bg-slate-50/50 dark:bg-slate-900/30 border-t border-slate-200 dark:border-slate-800">
-                <span class="text-sm text-slate-500 font-medium" th:text="${posts.size()} + '개의 게시글 표시 중'">24개의 게시글 중
-                    1-5 표시 중</span>
+                <span class="text-sm text-slate-500 font-medium"
+                    th:text="|전체 ${posts.size()}개의 게시글 표시 중 (현재 ${currentPage} / ${totalPages} 페이지)|">24개의 게시글 중 1-5 표시
+                    중</span>
                 <div class="flex items-center gap-1">
-                    <a class="flex h-9 px-3 items-center justify-center rounded-lg hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all text-slate-400 gap-1 text-sm font-medium"
-                        href="#">
+                    <a class="flex h-9 px-3 items-center justify-center rounded-lg hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all text-slate-400 gap-1 text-sm font-medium text-decoration-none"
+                        th:classappend="${currentPage == 1} ? 'pointer-events-none opacity-50' : ''"
+                        th:href="@{/posts(page=${currentPage - 1})}">
                         <span class="material-symbols-outlined text-[18px]">chevron_left</span>
                         <span>이전</span>
                     </a>
-                    <a class="text-sm font-bold leading-normal flex size-9 items-center justify-center text-white bg-primary rounded-lg shadow-lg shadow-primary/20"
-                        href="#">1</a>
-                    <a class="text-sm font-medium leading-normal flex size-9 items-center justify-center text-slate-600 dark:text-slate-400 rounded-lg hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all"
-                        href="#">2</a>
-                    <a class="text-sm font-medium leading-normal flex size-9 items-center justify-center text-slate-600 dark:text-slate-400 rounded-lg hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all"
-                        href="#">3</a>
-                    <span class="px-1 text-slate-400">...</span>
-                    <a class="text-sm font-medium leading-normal flex size-9 items-center justify-center text-slate-600 dark:text-slate-400 rounded-lg hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all"
-                        href="#">5</a>
-                    <a class="flex h-9 px-3 items-center justify-center rounded-lg hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all text-slate-400 gap-1 text-sm font-medium"
-                        href="#">
+
+                    <th:block th:each="pageNum : ${#numbers.sequence(1, totalPages)}">
+                        <a th:href="@{/posts(page=${pageNum})}" th:text="${pageNum}"
+                            class="text-sm font-medium leading-normal flex size-9 items-center justify-center rounded-lg transition-all text-decoration-none"
+                            th:classappend="${pageNum == currentPage} ? 'text-white bg-primary shadow-lg shadow-primary/20 font-bold' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700'">1</a>
+                    </th:block>
+
+                    <a class="flex h-9 px-3 items-center justify-center rounded-lg hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all text-slate-400 gap-1 text-sm font-medium text-decoration-none"
+                        th:classappend="${currentPage == totalPages} ? 'pointer-events-none opacity-50' : ''"
+                        th:href="@{/posts(page=${currentPage + 1})}">
                         <span>다음</span>
                         <span class="material-symbols-outlined text-[18px]">chevron_right</span>
                     </a>

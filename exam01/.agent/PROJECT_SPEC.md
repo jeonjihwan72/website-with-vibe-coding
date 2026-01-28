@@ -55,7 +55,7 @@
 ### 엔드포인트 및 기능
 - **Web View**:
     - `/` (Home): `home.html` (Thymeleaf 및 **Bootstrap 5** 기반, "Hello, Vibe!" 메시지 및 반응형 레이아웃 적용)
-    - `/posts`: `post/posts.html` (게시글 목록 조회 화면, Tailwind CSS 및 Glassmorphism 적용)
+    - `/posts`: `post/posts.html` (게시글 목록 조회 화면, 페이징 지원 - 페이지당 5개)
     - `/posts/{no}`: `post/post_detail.html` (게시글 상세 조회 화면, Tailwind CSS 적용)
     - `/posts/new`: `post/post_new_form.html` (게시글 작성 화면, Tailwind CSS 기반 작성폼 UI)
     - `POST /posts/add`: 게시글 실제 등록 처리 (등록 후 `/posts`로 리다이렉트)
@@ -97,4 +97,4 @@
 - **형식**: YAML
 
 ---
-*마지막 업데이트: 2026-01-28 (게시글 삭제 기능 추가)*
+*마지막 업데이트: 2026-01-28 (게시글 목록 페이징 기능 추가)*
