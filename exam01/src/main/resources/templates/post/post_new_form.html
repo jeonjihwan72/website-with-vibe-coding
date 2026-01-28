@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Post Creation Screen Variant 2</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-slate-100 transition-colors duration-200">
+    <!-- Top Navigation Bar -->
+    <header
+        class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined">edit_square</span>
+                </div>
+                <h1 class="text-lg font-bold tracking-tight">Community Board</h1>
+            </div>
+            <div class="flex items-center gap-6">
+                <nav class="hidden md:flex items-center gap-6">
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Community</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Blogs</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Events</a>
+                </nav>
+                <div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-700"></div>
+                <div class="size-10 rounded-full bg-cover bg-center border border-slate-200 dark:border-slate-700"
+                    data-alt="User profile avatar placeholder"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA6cTe4DHzPFcVC4bclVt53z2nkTx1FCMOfRJJcloMLkvc5XGMiLNQMW4EVnoz1C9C9MM1UD-Q2W5b2J9wnc0B91z20T6p9lDWdcnZ71gyujUF1u86mMslCbMcHtmn_O0qY5IZNd-1E3dMeCdIOWIMTlQzqclXwZpFEDzRC53c4tgIWq9cF31_tFWd8pHz8rkrYsX4ASs5I_91t6mTnWUsge1HF81CvGwjcCgCRlonKUZqV96NtqFq0PXiuJV4Zvn5U5BZ276r6s4cC');">
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <!-- Breadcrumbs -->
+        <div class="flex items-center gap-2 mb-6 text-sm text-slate-500 dark:text-slate-400">
+            <a class="hover:text-primary transition-colors" href="#">Home</a>
+            <span class="material-symbols-outlined text-xs">chevron_right</span>
+            <a class="hover:text-primary transition-colors" href="#">Community</a>
+            <span class="material-symbols-outlined text-xs">chevron_right</span>
+            <span class="text-slate-900 dark:text-slate-200 font-medium">Post Creation</span>
+        </div>
+        <!-- Main Content Card -->
+        <div
+            class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-100 dark:border-slate-800 overflow-hidden">
+            <!-- Header Section -->
+            <div
+                class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/30">
+                <div class="flex items-center gap-4">
+                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-2xl">description</span>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold">새 글 작성하기</h2>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">커뮤니티와 블로그에 공유할 소중한 이야기를 들려주세요.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button type="button" onclick="location.href='/posts'"
+                        class="px-5 py-2 rounded-lg text-sm font-semibold border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">취소</button>
+                    <button type="button" onclick="handleRegister()"
+                        class="px-5 py-2 rounded-lg text-sm font-semibold bg-primary text-white hover:bg-primary/90 shadow-sm transition-colors">등록</button>
+                </div>
+            </div>
+            <!-- Form Body -->
+            <div class="p-8 space-y-8">
+                <!-- Title Input -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">제목</label>
+                    <input id="title" required
+                        class="w-full text-2xl font-bold bg-transparent border-none p-0 focus:ring-0 placeholder:text-slate-300 dark:placeholder:text-slate-600"
+                        placeholder="제목을 입력하세요" type="text" />
+                    <div class="h-[1px] w-full bg-slate-100 dark:bg-slate-800"></div>
+                </div>
+                <!-- Formatting Toolbar -->
+                <div class="flex flex-col gap-2">
+                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">내용</label>
+                    <div
+                        class="flex flex-wrap items-center gap-1 p-1 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-lg">
+                        <button
+                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                            title="Bold">
+                            <span class="material-symbols-outlined text-lg">format_bold</span>
+                        </button>
+                        <button
+                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                            title="Italic">
+                            <span class="material-symbols-outlined text-lg">format_italic</span>
+                        </button>
+                        <button
+                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                            title="Strikethrough">
+                            <span class="material-symbols-outlined text-lg">format_strikethrough</span>
+                        </button>
+                        <div class="w-[1px] h-6 bg-slate-200 dark:bg-slate-700 mx-1"></div>
+                        <button
+                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                            title="Bulleted List">
+                            <span class="material-symbols-outlined text-lg">format_list_bulleted</span>
+                        </button>
+                        <button
+                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                            title="Numbered List">
+                            <span class="material-symbols-outlined text-lg">format_list_numbered</span>
+                        </button>
+                        <div class="w-[1px] h-6 bg-slate-200 dark:bg-slate-700 mx-1"></div>
+                        <button
+                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                            title="Add Link">
+                            <span class="material-symbols-outlined text-lg">link</span>
+                        </button>
+                        <button
+                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                            title="Add Image">
+                            <span class="material-symbols-outlined text-lg">image</span>
+                        </button>
+                        <button
+                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                            title="Add File">
+                            <span class="material-symbols-outlined text-lg">attach_file</span>
+                        </button>
+                        <div class="ml-auto flex items-center gap-1">
+                            <button
+                                class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                                title="Undo">
+                                <span class="material-symbols-outlined text-lg">undo</span>
+                            </button>
+                            <button
+                                class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                                title="Redo">
+                                <span class="material-symbols-outlined text-lg">redo</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Text Area -->
+                    <textarea id="content" required
+                        class="w-full min-h-[400px] bg-transparent border-none p-0 focus:ring-0 text-slate-700 dark:text-slate-300 resize-none leading-relaxed placeholder:text-slate-300 dark:placeholder:text-slate-600"
+                        placeholder="이곳에 내용을 입력해 주세요. 이미지를 드래그하여 업로드할 수 있습니다."></textarea>
+                </div>
+                <!-- Footer/Settings -->
+                <div class="pt-6 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">태그 설정</label>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-600 dark:text-slate-400">
+                                #커뮤니티
+                                <button class="hover:text-primary"><span
+                                        class="material-symbols-outlined text-[14px]">close</span></button>
+                            </span>
+                            <span
+                                class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-600 dark:text-slate-400">
+                                #일상
+                                <button class="hover:text-primary"><span
+                                        class="material-symbols-outlined text-[14px]">close</span></button>
+                            </span>
+                            <button
+                                class="inline-flex items-center px-3 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-xs font-medium text-slate-500 hover:border-primary hover:text-primary transition-all">
+                                <span class="material-symbols-outlined text-[14px] mr-1">add</span>
+                                태그 추가
+                            </button>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">공개 설정</label>
+                        <div class="flex items-center gap-4">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input checked=""
+                                    class="text-primary focus:ring-primary size-4 border-slate-300 dark:border-slate-700 dark:bg-slate-800"
+                                    name="visibility" type="radio" />
+                                <span class="text-sm text-slate-600 dark:text-slate-400">전체 공개</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input
+                                    class="text-primary focus:ring-primary size-4 border-slate-300 dark:border-slate-700 dark:bg-slate-800"
+                                    name="visibility" type="radio" />
+                                <span class="text-sm text-slate-600 dark:text-slate-400">비공개</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom Action Bar (Desktop Sticky) -->
+            <div
+                class="p-6 bg-slate-50 dark:bg-slate-800/20 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-3">
+                <span class="mr-auto text-xs text-slate-400">마지막 저장: 방금 전</span>
+                <button type="button" onclick="location.href='/posts'"
+                    class="px-6 py-2.5 rounded-lg text-sm font-semibold border border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 transition-all">취소</button>
+                <button type="button" onclick="handleRegister()"
+                    class="px-8 py-2.5 rounded-lg text-sm font-semibold bg-primary text-white hover:bg-primary/90 shadow-md transition-all">등록</button>
+            </div>
+        </div>
+        <!-- Helpful Tips Card -->
+        <div class="mt-8 p-6 bg-primary/5 border border-primary/20 rounded-xl flex items-start gap-4">
+            <span class="material-symbols-outlined text-primary">lightbulb</span>
+            <div>
+                <h4 class="text-sm font-bold text-primary mb-1">작성 팁</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    독자들의 관심을 끌 수 있는 명확한 제목을 사용해 보세요. 본문 중간에 이미지를 추가하면 가독성이 훨씬 좋아집니다.
+                    작성 중인 글은 자동으로 임시저장되니 안심하고 작성하세요.
+                </p>
+            </div>
+        </div>
+    </main>
+    <footer class="mt-auto py-8 text-center border-t border-slate-200 dark:border-slate-800">
+        <p class="text-xs text-slate-500 dark:text-slate-400">© 2024 Community Board Service. All rights reserved.</p>
+    </footer>
+    <script>
+        function handleRegister() {
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+
+            if (!title || !content) {
+                alert('제목과 내용을 모두 입력해 주세요.');
+                return;
+            }
+
+            alert('새 게시글 등록');
+        }
+    </script>
+</body>
+
+</html>
