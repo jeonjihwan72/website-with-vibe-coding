@@ -58,6 +58,10 @@
     - `/posts`: `post/posts.html` (게시글 목록 조회 화면, Tailwind CSS 및 Glassmorphism 적용)
     - `/posts/{no}`: `post/post_detail.html` (게시글 상세 조회 화면, Tailwind CSS 적용)
     - `/posts/new`: `post/post_new_form.html` (게시글 작성 화면, Tailwind CSS 기반 작성폼 UI)
+    - `POST /posts/add`: 게시글 실제 등록 처리 (등록 후 `/posts`로 리다이렉트)
+    - `/posts/{no}/edit`: `post/post_edit_form.html` (게시글 수정 화면 UI)
+    - `POST /posts/{no}/save`: 게시글 실제 수정 처리 (수정 후 `/posts/{no}`로 리다이렉트)
+    - `/posts/{no}/delete`: 게시글 삭제 처리 (삭제 후 `/posts`로 리다이렉트)
     - `/index.html`: (Thymeleaf 및 **Bootstrap 5** 기반, 서버 시간 출력 및 가이드 페이지)
 - **REST API**:
     - `GET /api/hello`: "Hello, Vibe!" 문자열 반환 (텍스트 기반 데이터 교환 인터페이스)
@@ -93,4 +97,4 @@
 - **형식**: YAML
 
 ---
-*마지막 업데이트: 2026-01-28 (게시글 작성폼 기능 추가)*
+*마지막 업데이트: 2026-01-28 (게시글 삭제 기능 추가)*

@@ -38,4 +38,17 @@ public class PostRepository {
     public void incrementViews(Long no) {
         findById(no).ifPresent(post -> post.setViews(post.getViews() + 1));
     }
+
+    public void save(Post post) {
+        long nextId = posts.stream()
+                .mapToLong(Post::getNo)
+                .max()
+                .orElse(0L) + 1;
+        post.setNo(nextId);
+        posts.add(post);
+    }
+
+    public void deleteById(Long no) {
+        posts.removeIf(post -> post.getNo().equals(no));
+    }
 }

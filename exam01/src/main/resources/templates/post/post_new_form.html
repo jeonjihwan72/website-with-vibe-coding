@@ -102,137 +102,139 @@
                 <div class="flex items-center gap-2">
                     <button type="button" onclick="location.href='/posts'"
                         class="px-5 py-2 rounded-lg text-sm font-semibold border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">취소</button>
-                    <button type="button" onclick="handleRegister()"
-                        class="px-5 py-2 rounded-lg text-sm font-semibold bg-primary text-white hover:bg-primary/90 shadow-sm transition-colors">등록</button>
+                    <!-- Small screen register button could also be a submit if desired, but typically we use the bottom one -->
                 </div>
             </div>
             <!-- Form Body -->
-            <div class="p-8 space-y-8">
-                <!-- Title Input -->
-                <div class="space-y-2">
-                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">제목</label>
-                    <input id="title" required
-                        class="w-full text-2xl font-bold bg-transparent border-none p-0 focus:ring-0 placeholder:text-slate-300 dark:placeholder:text-slate-600"
-                        placeholder="제목을 입력하세요" type="text" />
-                    <div class="h-[1px] w-full bg-slate-100 dark:bg-slate-800"></div>
-                </div>
-                <!-- Formatting Toolbar -->
-                <div class="flex flex-col gap-2">
-                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">내용</label>
+            <form th:action="@{/posts/add}" method="post">
+                <div class="p-8 space-y-8">
+                    <!-- Title Input -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">제목</label>
+                        <input id="title" name="title" required
+                            class="w-full text-2xl font-bold bg-transparent border-none p-0 focus:ring-0 placeholder:text-slate-300 dark:placeholder:text-slate-600"
+                            placeholder="제목을 입력하세요" type="text" />
+                        <div class="h-[1px] w-full bg-slate-100 dark:bg-slate-800"></div>
+                    </div>
+                    <!-- Formatting Toolbar -->
+                    <div class="flex flex-col gap-2">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">내용</label>
+                        <div
+                            class="flex flex-wrap items-center gap-1 p-1 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-lg">
+                            <button
+                                class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                                title="Bold">
+                                <span class="material-symbols-outlined text-lg">format_bold</span>
+                            </button>
+                            <button
+                                class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                                title="Italic">
+                                <span class="material-symbols-outlined text-lg">format_italic</span>
+                            </button>
+                            <button
+                                class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                                title="Strikethrough">
+                                <span class="material-symbols-outlined text-lg">format_strikethrough</span>
+                            </button>
+                            <div class="w-[1px] h-6 bg-slate-200 dark:bg-slate-700 mx-1"></div>
+                            <button
+                                class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                                title="Bulleted List">
+                                <span class="material-symbols-outlined text-lg">format_list_bulleted</span>
+                            </button>
+                            <button
+                                class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                                title="Numbered List">
+                                <span class="material-symbols-outlined text-lg">format_list_numbered</span>
+                            </button>
+                            <div class="w-[1px] h-6 bg-slate-200 dark:bg-slate-700 mx-1"></div>
+                            <button
+                                class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                                title="Add Link">
+                                <span class="material-symbols-outlined text-lg">link</span>
+                            </button>
+                            <button
+                                class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                                title="Add Image">
+                                <span class="material-symbols-outlined text-lg">image</span>
+                            </button>
+                            <button
+                                class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                                title="Add File">
+                                <span class="material-symbols-outlined text-lg">attach_file</span>
+                            </button>
+                            <div class="ml-auto flex items-center gap-1">
+                                <button
+                                    class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                                    title="Undo">
+                                    <span class="material-symbols-outlined text-lg">undo</span>
+                                </button>
+                                <button
+                                    class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
+                                    title="Redo">
+                                    <span class="material-symbols-outlined text-lg">redo</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Text Area -->
+                        <textarea id="content" name="content" required
+                            class="w-full min-h-[400px] bg-transparent border-none p-0 focus:ring-0 text-slate-700 dark:text-slate-300 resize-none leading-relaxed placeholder:text-slate-300 dark:placeholder:text-slate-600"
+                            placeholder="이곳에 내용을 입력해 주세요. 이미지를 드래그하여 업로드할 수 있습니다."></textarea>
+                    </div>
+                    <!-- Footer/Settings -->
                     <div
-                        class="flex flex-wrap items-center gap-1 p-1 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-lg">
-                        <button
-                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
-                            title="Bold">
-                            <span class="material-symbols-outlined text-lg">format_bold</span>
-                        </button>
-                        <button
-                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
-                            title="Italic">
-                            <span class="material-symbols-outlined text-lg">format_italic</span>
-                        </button>
-                        <button
-                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
-                            title="Strikethrough">
-                            <span class="material-symbols-outlined text-lg">format_strikethrough</span>
-                        </button>
-                        <div class="w-[1px] h-6 bg-slate-200 dark:bg-slate-700 mx-1"></div>
-                        <button
-                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
-                            title="Bulleted List">
-                            <span class="material-symbols-outlined text-lg">format_list_bulleted</span>
-                        </button>
-                        <button
-                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
-                            title="Numbered List">
-                            <span class="material-symbols-outlined text-lg">format_list_numbered</span>
-                        </button>
-                        <div class="w-[1px] h-6 bg-slate-200 dark:bg-slate-700 mx-1"></div>
-                        <button
-                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
-                            title="Add Link">
-                            <span class="material-symbols-outlined text-lg">link</span>
-                        </button>
-                        <button
-                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
-                            title="Add Image">
-                            <span class="material-symbols-outlined text-lg">image</span>
-                        </button>
-                        <button
-                            class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
-                            title="Add File">
-                            <span class="material-symbols-outlined text-lg">attach_file</span>
-                        </button>
-                        <div class="ml-auto flex items-center gap-1">
-                            <button
-                                class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
-                                title="Undo">
-                                <span class="material-symbols-outlined text-lg">undo</span>
-                            </button>
-                            <button
-                                class="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all text-slate-600 dark:text-slate-300"
-                                title="Redo">
-                                <span class="material-symbols-outlined text-lg">redo</span>
-                            </button>
+                        class="pt-6 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-3">
+                            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">태그 설정</label>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-600 dark:text-slate-400">
+                                    #커뮤니티
+                                    <button class="hover:text-primary"><span
+                                            class="material-symbols-outlined text-[14px]">close</span></button>
+                                </span>
+                                <span
+                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-600 dark:text-slate-400">
+                                    #일상
+                                    <button class="hover:text-primary"><span
+                                            class="material-symbols-outlined text-[14px]">close</span></button>
+                                </span>
+                                <button
+                                    class="inline-flex items-center px-3 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-xs font-medium text-slate-500 hover:border-primary hover:text-primary transition-all">
+                                    <span class="material-symbols-outlined text-[14px] mr-1">add</span>
+                                    태그 추가
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Text Area -->
-                    <textarea id="content" required
-                        class="w-full min-h-[400px] bg-transparent border-none p-0 focus:ring-0 text-slate-700 dark:text-slate-300 resize-none leading-relaxed placeholder:text-slate-300 dark:placeholder:text-slate-600"
-                        placeholder="이곳에 내용을 입력해 주세요. 이미지를 드래그하여 업로드할 수 있습니다."></textarea>
-                </div>
-                <!-- Footer/Settings -->
-                <div class="pt-6 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-3">
-                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">태그 설정</label>
-                        <div class="flex flex-wrap gap-2">
-                            <span
-                                class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-600 dark:text-slate-400">
-                                #커뮤니티
-                                <button class="hover:text-primary"><span
-                                        class="material-symbols-outlined text-[14px]">close</span></button>
-                            </span>
-                            <span
-                                class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-600 dark:text-slate-400">
-                                #일상
-                                <button class="hover:text-primary"><span
-                                        class="material-symbols-outlined text-[14px]">close</span></button>
-                            </span>
-                            <button
-                                class="inline-flex items-center px-3 py-1 rounded-full border border-dashed border-slate-300 dark:border-slate-700 text-xs font-medium text-slate-500 hover:border-primary hover:text-primary transition-all">
-                                <span class="material-symbols-outlined text-[14px] mr-1">add</span>
-                                태그 추가
-                            </button>
-                        </div>
-                    </div>
-                    <div class="space-y-3">
-                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">공개 설정</label>
-                        <div class="flex items-center gap-4">
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input checked=""
-                                    class="text-primary focus:ring-primary size-4 border-slate-300 dark:border-slate-700 dark:bg-slate-800"
-                                    name="visibility" type="radio" />
-                                <span class="text-sm text-slate-600 dark:text-slate-400">전체 공개</span>
-                            </label>
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input
-                                    class="text-primary focus:ring-primary size-4 border-slate-300 dark:border-slate-700 dark:bg-slate-800"
-                                    name="visibility" type="radio" />
-                                <span class="text-sm text-slate-600 dark:text-slate-400">비공개</span>
-                            </label>
+                        <div class="space-y-3">
+                            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">공개 설정</label>
+                            <div class="flex items-center gap-4">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input checked=""
+                                        class="text-primary focus:ring-primary size-4 border-slate-300 dark:border-slate-700 dark:bg-slate-800"
+                                        name="visibility" type="radio" />
+                                    <span class="text-sm text-slate-600 dark:text-slate-400">전체 공개</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input
+                                        class="text-primary focus:ring-primary size-4 border-slate-300 dark:border-slate-700 dark:bg-slate-800"
+                                        name="visibility" type="radio" />
+                                    <span class="text-sm text-slate-600 dark:text-slate-400">비공개</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Bottom Action Bar (Desktop Sticky) -->
-            <div
-                class="p-6 bg-slate-50 dark:bg-slate-800/20 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-3">
-                <span class="mr-auto text-xs text-slate-400">마지막 저장: 방금 전</span>
-                <button type="button" onclick="location.href='/posts'"
-                    class="px-6 py-2.5 rounded-lg text-sm font-semibold border border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 transition-all">취소</button>
-                <button type="button" onclick="handleRegister()"
-                    class="px-8 py-2.5 rounded-lg text-sm font-semibold bg-primary text-white hover:bg-primary/90 shadow-md transition-all">등록</button>
-            </div>
+                <!-- Bottom Action Bar (Desktop Sticky) -->
+                <div
+                    class="p-6 bg-slate-50 dark:bg-slate-800/20 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-3">
+                    <span class="mr-auto text-xs text-slate-400">마지막 저장: 방금 전</span>
+                    <button type="button" onclick="location.href='/posts'"
+                        class="px-6 py-2.5 rounded-lg text-sm font-semibold border border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 transition-all">취소</button>
+                    <button type="submit"
+                        class="px-8 py-2.5 rounded-lg text-sm font-semibold bg-primary text-white hover:bg-primary/90 shadow-md transition-all">등록</button>
+                </div>
+            </form>
         </div>
         <!-- Helpful Tips Card -->
         <div class="mt-8 p-6 bg-primary/5 border border-primary/20 rounded-xl flex items-start gap-4">

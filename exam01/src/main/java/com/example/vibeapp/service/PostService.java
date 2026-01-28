@@ -4,6 +4,7 @@ import com.example.vibeapp.entity.Post;
 import com.example.vibeapp.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -22,5 +23,26 @@ public class PostService {
         postRepository.incrementViews(no);
         return postRepository.findById(no)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid post number: " + no));
+    }
+
+    public void registerPost(String title, String content) {
+        Post post = new Post();
+        post.setTitle(title);
+        post.setContent(content);
+        post.setCreatedAt(LocalDateTime.now());
+        post.setUpdatedAt(null);
+        post.setViews(0);
+        postRepository.save(post);
+    }
+
+    public void updatePost(Long no, String title, String content) {
+        Post post = getPost(no);
+        post.setTitle(title);
+        post.setContent(content);
+        post.setUpdatedAt(LocalDateTime.now());
+    }
+
+    public void deletePost(Long no) {
+        postRepository.deleteById(no);
     }
 }
