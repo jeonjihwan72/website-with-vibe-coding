@@ -865,6 +865,8 @@ schema.sql
     - DTO를 사용하므로써 Repository와 Controller의 의존성을 낮출 수 있다. -> 유지보수성 향상
         - DTO는 Repository에서 정보를 가져와 Controller가 필요한 형태로 가공하여 두 계층의 의존성을 낮춘다.
     - 스프링부트 프로젝트에서는 `@Data`가 붙은 클래스가 DTO가 된다.
+- 보일러플레이트(Boilerplate Code): 변경없이 재사용되는 코드 
+    - ex. getter, setter
 
 ### Tips
 
