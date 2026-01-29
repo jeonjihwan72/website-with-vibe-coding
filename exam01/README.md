@@ -870,6 +870,7 @@ schema.sql
 - record 문법과 lombok은 getter, setter, equals, hashCode, toString 등을 자동으로 생성해준다.
     - record 문법은 인스턴스를 생성할 때 반드시 모든 필드를 초기화해야 한다.
     - lombok은 필드를 초기화하지 않아도 된다.
+- MVC, MVP, MCP(?)
 
 ### Tips
 
