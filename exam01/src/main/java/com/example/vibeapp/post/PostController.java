@@ -39,7 +39,7 @@ public class PostController {
 
     @GetMapping("/posts/new")
     public String createForm(Model model) {
-        model.addAttribute("post", new PostCreateDto());
+        model.addAttribute("post", new PostCreateDto("", ""));
         return "post/post_new_form";
     }
 
@@ -55,10 +55,13 @@ public class PostController {
     @GetMapping("/posts/{no}/edit")
     public String editForm(@PathVariable("no") Long no, Model model) {
         PostResponseDto postDto = postService.findById(no);
-        PostUpdateDto updateDto = new PostUpdateDto(no, postDto.getTitle(), postDto.getContent());
-        updateDto.setCreatedAt(postDto.getCreatedAt());
-        updateDto.setUpdatedAt(postDto.getUpdatedAt());
-        updateDto.setViews(postDto.getViews());
+        PostUpdateDto updateDto = new PostUpdateDto(
+                no,
+                postDto.title(),
+                postDto.content(),
+                postDto.createdAt(),
+                postDto.updatedAt(),
+                postDto.views());
         model.addAttribute("post", updateDto);
         model.addAttribute("no", no);
         return "post/post_edit_form";
@@ -69,9 +72,15 @@ public class PostController {
             BindingResult result, Model model) {
         if (result.hasErrors()) {
             PostResponseDto postDto = postService.findById(no);
-            postUpdateDto.setCreatedAt(postDto.getCreatedAt());
-            postUpdateDto.setUpdatedAt(postDto.getUpdatedAt());
-            postUpdateDto.setViews(postDto.getViews());
+            // Record는 불변이므로 새로운 객체를 생성하여 전달
+            PostUpdateDto errorDto = new PostUpdateDto(
+                    no,
+                    postUpdateDto.title(),
+                    postUpdateDto.content(),
+                    postDto.createdAt(),
+                    postDto.updatedAt(),
+                    postDto.views());
+            model.addAttribute("post", errorDto);
             model.addAttribute("no", no);
             return "post/post_edit_form";
         }

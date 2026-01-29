@@ -867,6 +867,9 @@ schema.sql
     - 스프링부트 프로젝트에서는 `@Data`가 붙은 클래스가 DTO가 된다.
 - 보일러플레이트(Boilerplate Code): 변경없이 재사용되는 코드 
     - ex. getter, setter
+- record 문법과 lombok은 getter, setter, equals, hashCode, toString 등을 자동으로 생성해준다.
+    - record 문법은 인스턴스를 생성할 때 반드시 모든 필드를 초기화해야 한다.
+    - lombok은 필드를 초기화하지 않아도 된다.
 
 ### Tips
 
