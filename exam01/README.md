@@ -879,3 +879,5 @@ schema.sql
 - DTO cs Entity vs VO
     - 셋의 차이를 설명할 때는 Entity부터 설명하는 것이 설명하기에 용이하다.
     - 셋에 대한 개념을 명확히 잡고, 차이점을 확실히 알아야 한다.
+- Vibe Coding에서 언어 선택을 할 때, 더 엄격한 언어를 사용할 때 에이전트가 생성하는 코드의 기복이 줄어든다.
+    - ex. 백엔드: Go > Java, 프론트엔드: TypeScript > JavaScript
