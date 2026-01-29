@@ -855,3 +855,14 @@ schema.sql
 - Entry Point: 프로그램이 시작되는 지점
     - 대부분 main() 메서드가 이에 해당
     - 스프링부트 프로젝트에서는 `@SpringBootApplication`이 붙은 클래스가 Entry Point가 된다.
+- DAO: Data Access Object
+    - 데이터베이스에 접근하여 데이터를 가져오거나 저장하는 역할을 하는 객체
+    - 스프링부트 프로젝트에서는 `@Repository`가 붙은 클래스가 DAO가 된다.
+- DTO: Data Transfer Object
+    - 데이터를 전달하기 위한 객체
+    - 스프링부트 프로젝트에서는 `@Data`가 붙은 클래스가 DTO가 된다.
+
+### Tips
+
+- Vibe Coding에서는 전반적인 맥락에 대해서만 이해를 하고 구체적인 메소드를 암기하지는 않는다. 
+    - 에이전트가 임의로 메소드 명을 결정한다.
