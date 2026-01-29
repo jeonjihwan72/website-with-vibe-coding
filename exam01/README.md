@@ -852,3 +852,6 @@ schema.sql
     - `%변수명%`: Windows에서 환경 변수를 호출할 때 사용하는 기호
     - `JAVA_HOME`: 자바 개발 도구(JDK)가 설치된 최상위 경로를 가리키는 관습적 변수명
 - REST API: HTTP 프로토콜을 사용하여 클라이언트와 서버 간의 데이터 교환을 위한 인터페이스 (텍스트 기반 프로토콜)
+- Entry Point: 프로그램이 시작되는 지점
+    - 대부분 main() 메서드가 이에 해당
+    - 스프링부트 프로젝트에서는 `@SpringBootApplication`이 붙은 클래스가 Entry Point가 된다.
