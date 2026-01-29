@@ -3,6 +3,7 @@ package com.example.vibeapp.post.dto;
 import com.example.vibeapp.post.Post;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import java.time.LocalDateTime;
 
 public class PostUpdateDto {
 
@@ -13,6 +14,10 @@ public class PostUpdateDto {
     private String title;
 
     private String content;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private Integer views;
 
     public PostUpdateDto() {
     }
@@ -51,5 +56,29 @@ public class PostUpdateDto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Integer getViews() {
+        return views;
+    }
+
+    public void setViews(Integer views) {
+        this.views = views;
     }
 }

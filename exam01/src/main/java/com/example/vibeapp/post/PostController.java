@@ -56,6 +56,9 @@ public class PostController {
     public String editForm(@PathVariable("no") Long no, Model model) {
         PostResponseDto postDto = postService.findById(no);
         PostUpdateDto updateDto = new PostUpdateDto(no, postDto.getTitle(), postDto.getContent());
+        updateDto.setCreatedAt(postDto.getCreatedAt());
+        updateDto.setUpdatedAt(postDto.getUpdatedAt());
+        updateDto.setViews(postDto.getViews());
         model.addAttribute("post", updateDto);
         model.addAttribute("no", no);
         return "post/post_edit_form";
@@ -65,6 +68,10 @@ public class PostController {
     public String update(@PathVariable("no") Long no, @Valid @ModelAttribute("post") PostUpdateDto postUpdateDto,
             BindingResult result, Model model) {
         if (result.hasErrors()) {
+            PostResponseDto postDto = postService.findById(no);
+            postUpdateDto.setCreatedAt(postDto.getCreatedAt());
+            postUpdateDto.setUpdatedAt(postDto.getUpdatedAt());
+            postUpdateDto.setViews(postDto.getViews());
             model.addAttribute("no", no);
             return "post/post_edit_form";
         }
