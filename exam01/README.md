@@ -860,6 +860,10 @@ schema.sql
     - 스프링부트 프로젝트에서는 `@Repository`가 붙은 클래스가 DAO가 된다.
 - DTO: Data Transfer Object
     - 데이터를 전달하기 위한 객체
+    - 식당에서의 식판 역할 
+    - Repository의 내용을 그대로 가져오지 않고, 필요한 내용만 가져온다. -> 보안성 향상
+    - DTO를 사용하므로써 Repository와 Controller의 의존성을 낮출 수 있다. -> 유지보수성 향상
+        - DTO는 Repository에서 정보를 가져와 Controller가 필요한 형태로 가공하여 두 계층의 의존성을 낮춘다.
     - 스프링부트 프로젝트에서는 `@Data`가 붙은 클래스가 DTO가 된다.
 
 ### Tips
