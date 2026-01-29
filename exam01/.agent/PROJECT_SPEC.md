@@ -39,6 +39,7 @@
 ### 종속성 (Dependencies)
 - `spring-boot-starter-web`: REST API 및 웹 개발을 위한 핵심 스타터
 - `spring-boot-starter-thymeleaf`: HTML 뷰 렌더링을 위한 템플릿 엔진
+- `spring-boot-starter-validation`: Bean Validation을 이용한 데이터 유효성 검사 추가
 - `spring-boot-starter-test`: 테스트 환경 구축
 - `junit-platform-launcher`: JUnit 5 테스트 실행 지원
 
@@ -84,7 +85,12 @@
 │       │           ├── Post.java         # 게시글 엔티티
 │       │           ├── PostController.java # 게시글 컨트롤러
 │       │           ├── PostRepository.java # 게시글 저장소
-│       │           └── PostService.java    # 게시글 서비스
+│       │           ├── PostService.java    # 게시글 서비스
+│       │           └── dto/                # DTO 패키지
+│       │               ├── PostCreateDto.java # 게시글 생성 DTO
+│       │               ├── PostUpdateDto.java # 게시글 수정 DTO
+│       │               ├── PostResponseDto.java # 게시글 상세 DTO
+│       │               └── PostListDto.java   # 게시글 목록 DTO
 │       └── resources/
 │           ├── templates/
 │           │   ├── home/
@@ -101,4 +107,4 @@
 - **형식**: YAML
 
 ---
-*마지막 업데이트: 2026-01-28 (코드 리팩토링 및 네이밍 정제 반영)*
+*마지막 업데이트: 2026-01-29 (DTO 패턴 적용 및 Bean Validation 추가 반영)*
