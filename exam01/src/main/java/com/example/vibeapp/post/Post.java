@@ -1,16 +1,37 @@
 package com.example.vibeapp.post;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "post")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long no;
+
+    @Column(nullable = false, length = 200)
     private String title;
+
+    @Column(nullable = false, columnDefinition = "CLOB")
     private String content;
+
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-    private Integer views;
+
+    @Column(nullable = false)
+    private Integer views = 0;
 
     public Post() {
+    }
+
+    // JPA 영속화 전 생성 시간 자동 설정
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
     }
 
     public Post(Long no, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt,
