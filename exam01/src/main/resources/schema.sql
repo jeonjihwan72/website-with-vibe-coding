@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS post (
     no BIGINT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(100) NOT NULL,
-    content CLOB,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    title VARCHAR(200) NOT NULL,
+    content CLOB NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL,
     views INT DEFAULT 0
 );
