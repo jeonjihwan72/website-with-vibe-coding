@@ -40,6 +40,8 @@
 - `spring-boot-starter-web`: REST API 및 웹 개발을 위한 핵심 스타터
 - `spring-boot-starter-thymeleaf`: HTML 뷰 렌더링을 위한 템플릿 엔진
 - `spring-boot-starter-validation`: Bean Validation을 이용한 데이터 유효성 검사 추가
+- `mybatis-spring-boot-starter:4.0.0`: MyBatis SQL Mapper 연동
+- `com.h2database:h2`: H2 데이터베이스 내장형 (파일 기반 저장)
 - `spring-boot-starter-test`: 테스트 환경 구축
 - `junit-platform-launcher`: JUnit 5 테스트 실행 지원
 
@@ -50,23 +52,26 @@
 - **`VibeApp`**: 애플리케이션의 진입점(Entry Point) 클래스
 
 ### 서비스 및 데이터 (Services & Data)
-- **`PostService`**: 게시판 비즈니스 로직(조회수 증가, 페이징 계산 등) 처리
-- **`PostRepository`**: 인메모리(`ArrayList`) 기반의 게시글 데이터 저장소
+- **`PostService`**: 게시판 비즈니스 로직 및 `PostMapper` 호출
+- **`PostMapper` (Interface)**: MyBatis 매퍼 인터페이스
+- **`PostMapper.xml`**: SQL 쿼리 로직 정의 (CRUD 및 페이징)
+- **`PostRepository`**: 기존 인메모리 저장소 (현재는 `PostMapper`로 전환됨)
 
 ### 엔드포인트 및 기능 (Web View)
 - `/` (Home): 홈 페이지 (서버 시간 출력 및 대시보드 형태)
-- `/posts`: 게시글 목록 (페이지당 5개 페이징 지원)
+- `/posts`: 게시글 목록 (페이지당 5개 페이징 지원, DB 연동)
 - `/posts/{no}`: 게시글 상세 내용 및 조회수 표시
 - `/posts/new`: 게시글 작성 폼
 - `POST /posts/add`: 게시글 등록 처리 프로세스
 - `/posts/{no}/edit`: 게시글 수정 폼
 - `POST /posts/{no}/save`: 게시글 수정 처리 프로세스
 - `/posts/{no}/delete`: 게시글 삭제 처리 프로세스
-- `/index.html`: 가이드 및 서버 정보 확인 페이지
+- `/h2-console`: H2 데이터베이스 웹 콘솔 (DB 직접 확인 가능)
 
 ### 빌드 및 검증 상태
 - **빌드 도구**: Gradle Wrapper (`.\gradlew.bat`)
-- **검증 완료**: `gradlew build` 성공 (최종 확인: 2026-01-28)
+- **DB 스키마**: `src/main/resources/schema.sql` (자동 초기화 및 유지)
+- **로깅**: `logback-spring.xml`을 통한 체계적인 로그 관리
 - **디자인**: Tailwind CSS 및 Bootstrap 5를 활용한 현대적인 UI/UX 적용
 
 ## 6. 프로젝트 디렉터리 구조 (Project Directory Structure)
@@ -74,6 +79,8 @@
 .
 ├── .agent/
 │   └── PROJECT_SPEC.md        # 프로젝트 명세서
+├── data/
+│   └── testdb.mv.db           # H2 데이터베이스 파일 (자동 생성)
 ├── src/
 │   └── main/
 │       ├── java/
@@ -84,27 +91,29 @@
 │       │       └── post/
 │       │           ├── Post.java         # 게시글 엔티티
 │       │           ├── PostController.java # 게시글 컨트롤러
-│       │           ├── PostRepository.java # 게시글 저장소
+│       │           ├── PostMapper.java   # MyBatis 매퍼 인터페이스
+│       │           ├── PostRepository.java # (구) 인메모리 저장소
 │       │           ├── PostService.java    # 게시글 서비스
 │       │           └── dto/                # DTO 패키지
-│       │               ├── PostCreateDto.java # 게시글 생성 DTO
-│       │               ├── PostUpdateDto.java # 게시글 수정 DTO
-│       │               ├── PostResponseDto.java # 게시글 상세 DTO
-│       │               └── PostListDto.java   # 게시글 목록 DTO
 │       └── resources/
+│           ├── mapper/
+│           │   └── post/
+│           │       └── PostMapper.xml   # MyBatis SQL 매핑 파일
 │           ├── templates/
 │           │   ├── home/
-│           │   │   └── home.html       # 홈 페이지 템플릿
-│           │   ├── post/               # 게시글 관련 템플릿들
-│           │   └── index.html          # 가이드 페이지 템플릿
-│           └── application.yml         # 애플리케이션 설정 파일
+│           │   └── post/
+│           ├── application.yml         # 애플리케이션 설정
+│           ├── logback-spring.xml      # 로깅 설정
+│           └── schema.sql              # DB 테이블 생성 스크립트
 ├── build.gradle                # Gradle 빌드 스크립트
 └── README.md                   # 프로젝트 리드미
 ```
 
 ## 7. 설정 정보 (Configuration)
 - **설정 파일**: `src/main/resources/application.yml`
-- **형식**: YAML
+- **DB 설정**: H2 File DB (`jdbc:h2:file:./data/testdb`)
+- **MyBatis**: XML Mapper 위치 및 Type Alias 설정 완료
 
 ---
-*마지막 업데이트: 2026-01-29 (DTO 패턴 적용 및 Bean Validation 추가 반영)*
+*마지막 업데이트: 2026-01-30 (MyBatis 전환 및 H2 데이터베이스 도입 반영)*
+

@@ -879,6 +879,9 @@ schema.sql
 - DDL, DML, DCL, TCL
 - 윈도우 환경에서 `gradlew`를 실행할 경우 아래의 순서대로 탐색하여 실행한다.
     - `gradlew.com` -> `gradlew.exe` -> `gradlew.bat`
+- myBatis: SQL Mapper의 일종.
+    - 비교군으로 JPA의 Hibernate가 있다.
+    - myBatis에서 꺼낸 테이블 데이터를 `레코드`라고 한다.
 
 ### Tips
 
